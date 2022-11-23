@@ -21,7 +21,79 @@ type TVList {
   total_pages: Int!
 }
 
+type CreatedBy {
+  id: Int
+  credit_id: String
+  name: String
+  gender: String
+  profile_path: String
+}
+
+type Episode {
+  air_date: String
+  episode_number: Int
+  id: Int!
+  name: String
+  overview: String
+  production_code: String
+  season_number: Int
+  still_path: String
+  vote_average: Float
+  vote_count: Int
+}
+
+type Network {
+  name: String
+  id: Int!
+  logo_path: String
+  origin_country: String
+}
+
+type Season {
+  air_date: String
+  episode_count: Int
+  id: Int!
+  name: String
+  overview: String
+  poster_path: String
+  season_number: Int
+}
+
+type TVDetail {
+  backdrop_path: String
+  created_by: [CreatedBy!]
+  episode_runtime: [Int!]
+  first_air_date: String
+  genres: [Genre!]
+  homepage: String
+  id: Int!
+  in_production: Boolean
+  languages: [String!]
+  last_air_date: String
+  last_episode_to_air: Episode
+  name: String
+  networks: [Network!]
+  number_of_episodes: Int
+  number_of_seasons: Int
+  origin_country: [String!]
+  original_language: String
+  original_name: String
+  overview: String
+  popularity: Float
+  poster_path: String
+  production_companies: [ProductionCompany!]
+  production_countries: [ProductionCountry!]
+  seasons: [Season!]
+  spoken_languages: [SpokenLanguage!]
+  status: String
+  tagline: String
+  type: String
+  vote_average: Float
+  vote_count: Int
+}
+
 type TV {
+  detail(id: Int!, language: String): TVDetail!
   popular(page: Int, language: String): TVList!
   top_rated(page: Int, language: String): TVList!
   on_the_air(page: Int, language: String): TVList!

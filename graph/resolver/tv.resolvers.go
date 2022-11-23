@@ -16,6 +16,11 @@ func (r *queryResolver) Tv(ctx context.Context) (*model.Tv, error) {
 	return &model.Tv{}, nil
 }
 
+// Detail is the resolver for the detail field.
+func (r *tVResolver) Detail(ctx context.Context, obj *model.Tv, id int, language *string) (*model.TVDetail, error) {
+	return tmdb.TVDetail(id, language)
+}
+
 // Popular is the resolver for the popular field.
 func (r *tVResolver) Popular(ctx context.Context, obj *model.Tv, page *int, language *string) (*model.TVList, error) {
 	return tmdb.TVPopular(page, language)

@@ -7,6 +7,29 @@ type Introduction {
   Message: String!
 }
 
+type ProductionCompany {
+  name: String
+  id: Int!
+  logo_path: String
+  origin_country: String
+}
+
+type ProductionCountry {
+  iso_3166_1: String
+  name: String
+}
+
+type SpokenLanguage {
+  iso_639_1: String
+  name: String
+  english_name: String
+}
+
+type Genre {
+  id: Int
+  name: String
+}
+
 type Query {
   introduction: Introduction!
 }

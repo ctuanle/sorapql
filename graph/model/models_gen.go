@@ -2,15 +2,69 @@
 
 package model
 
+type CreatedBy struct {
+	ID          *int    `json:"id"`
+	CreditID    *string `json:"credit_id"`
+	Name        *string `json:"name"`
+	Gender      *string `json:"gender"`
+	ProfilePath *string `json:"profile_path"`
+}
+
+type Episode struct {
+	AirDate        *string  `json:"air_date"`
+	EpisodeNumber  *int     `json:"episode_number"`
+	ID             int      `json:"id"`
+	Name           *string  `json:"name"`
+	Overview       *string  `json:"overview"`
+	ProductionCode *string  `json:"production_code"`
+	SeasonNumber   *int     `json:"season_number"`
+	StillPath      *string  `json:"still_path"`
+	VoteAverage    *float64 `json:"vote_average"`
+	VoteCount      *int     `json:"vote_count"`
+}
+
+type Genre struct {
+	ID   *int    `json:"id"`
+	Name *string `json:"name"`
+}
+
 type Introduction struct {
 	Name    string `json:"Name"`
 	Message string `json:"Message"`
 }
 
 type Movie struct {
-	Popular  *MovieList `json:"popular"`
-	TopRated *MovieList `json:"top_rated"`
-	Upcoming *MovieList `json:"upcoming"`
+	Detail   *MovieDetail `json:"detail"`
+	Popular  *MovieList   `json:"popular"`
+	TopRated *MovieList   `json:"top_rated"`
+	Upcoming *MovieList   `json:"upcoming"`
+}
+
+type MovieDetail struct {
+	Adult               *bool                `json:"adult"`
+	BackdropPath        *string              `json:"backdrop_path"`
+	Budget              *int                 `json:"budget"`
+	Genres              []*Genre             `json:"genres"`
+	Homepage            *string              `json:"homepage"`
+	ID                  int                  `json:"id"`
+	ImdbID              *string              `json:"imdb_id"`
+	OriginalLanguage    *string              `json:"original_language"`
+	OriginalTitle       *string              `json:"original_title"`
+	Overview            *string              `json:"overview"`
+	Popularity          *float64             `json:"popularity"`
+	PosterPath          *string              `json:"poster_path"`
+	ProductionCompanies []*ProductionCompany `json:"production_companies"`
+	ProductionCountries []*ProductionCountry `json:"production_countries"`
+	ReleaseDate         *string              `json:"release_date"`
+	Revenue             *int                 `json:"revenue"`
+	Runtime             *int                 `json:"runtime"`
+	SpokenLanguages     []*SpokenLanguage    `json:"spoken_languages"`
+	Status              *string              `json:"status"`
+	Tagline             *string              `json:"tagline"`
+	Title               *string              `json:"title"`
+	Video               *bool                `json:"video"`
+	VoteAverage         *float64             `json:"vote_average"`
+	VoteCount           *int                 `json:"vote_count"`
 }
 
 type MovieList struct {
@@ -37,10 +91,79 @@ type MovieListItem struct {
 	VoteAverage      *float64 `json:"vote_average"`
 }
 
+type Network struct {
+	Name          *string `json:"name"`
+	ID            int     `json:"id"`
+	LogoPath      *string `json:"logo_path"`
+	OriginCountry *string `json:"origin_country"`
+}
+
+type ProductionCompany struct {
+	Name          *string `json:"name"`
+	ID            int     `json:"id"`
+	LogoPath      *string `json:"logo_path"`
+	OriginCountry *string `json:"origin_country"`
+}
+
+type ProductionCountry struct {
+	Iso3166_1 *string `json:"iso_3166_1"`
+	Name      *string `json:"name"`
+}
+
+type Season struct {
+	AirDate      *string `json:"air_date"`
+	EpisodeCount *int    `json:"episode_count"`
+	ID           int     `json:"id"`
+	Name         *string `json:"name"`
+	Overview     *string `json:"overview"`
+	PosterPath   *string `json:"poster_path"`
+	SeasonNumber *int    `json:"season_number"`
+}
+
+type SpokenLanguage struct {
+	Iso639_1    *string `json:"iso_639_1"`
+	Name        *string `json:"name"`
+	EnglishName *string `json:"english_name"`
+}
+
 type Tv struct {
-	Popular  *TVList `json:"popular"`
-	TopRated *TVList `json:"top_rated"`
-	OnTheAir *TVList `json:"on_the_air"`
+	Detail   *TVDetail `json:"detail"`
+	Popular  *TVList   `json:"popular"`
+	TopRated *TVList   `json:"top_rated"`
+	OnTheAir *TVList   `json:"on_the_air"`
+}
+
+type TVDetail struct {
+	BackdropPath        *string              `json:"backdrop_path"`
+	CreatedBy           []*CreatedBy         `json:"created_by"`
+	EpisodeRuntime      []int                `json:"episode_runtime"`
+	FirstAirDate        *string              `json:"first_air_date"`
+	Genres              []*Genre             `json:"genres"`
+	Homepage            *string              `json:"homepage"`
+	ID                  int                  `json:"id"`
+	InProduction        *bool                `json:"in_production"`
+	Languages           []string             `json:"languages"`
+	LastAirDate         *string              `json:"last_air_date"`
+	LastEpisodeToAir    *Episode             `json:"last_episode_to_air"`
+	Name                *string              `json:"name"`
+	Networks            []*Network           `json:"networks"`
+	NumberOfEpisodes    *int                 `json:"number_of_episodes"`
+	NumberOfSeasons     *int                 `json:"number_of_seasons"`
+	OriginCountry       []string             `json:"origin_country"`
+	OriginalLanguage    *string              `json:"original_language"`
+	OriginalName        *string              `json:"original_name"`
+	Overview            *string              `json:"overview"`
+	Popularity          *float64             `json:"popularity"`
+	PosterPath          *string              `json:"poster_path"`
+	ProductionCompanies []*ProductionCompany `json:"production_companies"`
+	ProductionCountries []*ProductionCountry `json:"production_countries"`
+	Seasons             []*Season            `json:"seasons"`
+	SpokenLanguages     []*SpokenLanguage    `json:"spoken_languages"`
+	Status              *string              `json:"status"`
+	Tagline             *string              `json:"tagline"`
+	Type                *string              `json:"type"`
+	VoteAverage         *float64             `json:"vote_average"`
+	VoteCount           *int                 `json:"vote_count"`
 }
 
 type TVList struct {

@@ -50,3 +50,17 @@ func TVOnTheAir(page *int, language *string) (*model.TVList, error) {
 	
 	return data, nil
 }
+
+func TVDetail(id int, language *string) (*model.TVDetail, error) {
+	query := ""
+	if language != nil && len(*language) != 0 {
+		query += "language=" + *language
+	}
+
+	data, err := fetcher[*model.TVDetail](fmt.Sprintf("/tv/%v", id), query)
+	if err != nil {
+		return nil, errors.New("Something went wrong!")
+	}
+
+	return data, nil
+}

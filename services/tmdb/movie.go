@@ -53,3 +53,17 @@ func MovieUpcoming(page *int, language *string, region *string) (*model.MovieLis
 	
 	return data, nil
 }
+
+func MovieDetail(id int, language *string) (*model.MovieDetail, error) {
+	query := ""
+	if language != nil && len(*language) != 0 {
+		query += "language=" + *language
+	}
+
+	data, err := fetcher[*model.MovieDetail](fmt.Sprintf("/movie/%v", id), query)
+	if err != nil {
+		return nil, errors.New("Something went wrong!")
+	}
+
+	return data, nil
+}

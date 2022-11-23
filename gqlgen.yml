@@ -63,6 +63,8 @@ models:
       - github.com/99designs/gqlgen/graphql.Int32
   Movie:
     fields:
+      detail:
+        resolver: true
       popular:
         resolver: true
       top_rated:
@@ -71,6 +73,8 @@ models:
         resolver: true
   TV:
     fields:
+      detail:
+        resolver: true
       popular:
         resolver: true
       top_rated:

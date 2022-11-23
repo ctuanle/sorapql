@@ -11,6 +11,11 @@ import (
 	"github.com/ctuanle/sorapql/services/tmdb"
 )
 
+// Detail is the resolver for the detail field.
+func (r *movieResolver) Detail(ctx context.Context, obj *model.Movie, id int, language *string) (*model.MovieDetail, error) {
+	return tmdb.MovieDetail(id, language)
+}
+
 // Popular is the resolver for the popular field.
 func (r *movieResolver) Popular(ctx context.Context, obj *model.Movie, page *int, language *string, region *string) (*model.MovieList, error) {
 	return tmdb.MoviePopular(page, language, region)
