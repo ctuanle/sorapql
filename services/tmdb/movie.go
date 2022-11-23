@@ -32,7 +32,7 @@ func MoviePopular(page *int, language *string, region *string) (*model.MovieList
 	return data, nil
 }
 
-func TopRated(page *int, language *string, region *string) (*model.MovieList, error) {
+func MovieTopRated(page *int, language *string, region *string) (*model.MovieList, error) {
 	query := queryListBuilder(page, language, region)
 
 	data, err := fetcher[*model.MovieList]("/movie/top_rated", query)
@@ -43,7 +43,7 @@ func TopRated(page *int, language *string, region *string) (*model.MovieList, er
 	return data, nil
 }
 
-func Upcoming(page *int, language *string, region *string) (*model.MovieList, error) {
+func MovieUpcoming(page *int, language *string, region *string) (*model.MovieList, error) {
 	query := queryListBuilder(page, language, region)
 
 	data, err := fetcher[*model.MovieList]("/movie/upcoming", query)

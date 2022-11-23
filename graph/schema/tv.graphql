@@ -1,0 +1,32 @@
+type TVListItem {
+  poster_path: String
+  popularity: Float
+  id: Int!
+  backdrop_path: String
+  vote_average: Float
+  overview: String
+  first_air_date: String
+  origin_country: [String!]
+  genre_ids: [Int!]
+  original_language: String
+  vote_count: Int
+  name: String
+  original_name: String
+}
+
+type TVList {
+  page: Int!
+  results: [TVListItem!]!
+  total_results: Int!
+  total_pages: Int!
+}
+
+type TV {
+  popular(page: Int, language: String): TVList!
+  top_rated(page: Int, language: String): TVList!
+  on_the_air(page: Int, language: String): TVList!
+}
+
+extend type Query {
+  tv: TV!
+}

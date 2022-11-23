@@ -69,3 +69,11 @@ models:
         resolver: true
       upcoming:
         resolver: true
+  TV:
+    fields:
+      popular:
+        resolver: true
+      top_rated:
+        resolver: true
+      on_the_air:
+        resolver: true

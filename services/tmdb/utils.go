@@ -11,6 +11,14 @@ import (
 	"time"
 )
 
+// func queryBuilder(params map[string]any) string {
+// 	query := ""
+// 	for k, v := range params {
+// 		query = fmt.Sprintf("%v%v=%v&", query, k, v)
+// 	}
+// 	return query
+// }
+
 func fetcher[T any](path string, query string) (T, error) {
 	key := os.Getenv("TMDB_KEY")
 	base := os.Getenv("TMDB_URL")

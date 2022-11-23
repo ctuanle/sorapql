@@ -18,12 +18,12 @@ func (r *movieResolver) Popular(ctx context.Context, obj *model.Movie, page *int
 
 // TopRated is the resolver for the top_rated field.
 func (r *movieResolver) TopRated(ctx context.Context, obj *model.Movie, page *int, language *string, region *string) (*model.MovieList, error) {
-	return tmdb.TopRated(page, language, region)
+	return tmdb.MovieTopRated(page, language, region)
 }
 
 // Upcoming is the resolver for the upcoming field.
 func (r *movieResolver) Upcoming(ctx context.Context, obj *model.Movie, page *int, language *string, region *string) (*model.MovieList, error) {
-	return tmdb.Upcoming(page, language, region)
+	return tmdb.MovieUpcoming(page, language, region)
 }
 
 // Movie is the resolver for the movie field.
