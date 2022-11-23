@@ -1,0 +1,12 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Introduction {
+  Name: String!
+  Message: String!
+}
+
+type Query {
+  introduction: Introduction!
+}

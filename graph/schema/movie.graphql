@@ -1,0 +1,33 @@
+type MovieListItem {
+  poster_path: String
+  adult: Boolean
+  overview: String
+  release_date: String
+  genre_ids: [Int]
+  id: Int!
+  original_title: String
+  original_language: String
+  title: String
+  backdrop_path: String
+  popularity: Float
+  vote_count: Int
+  video: Boolean
+  vote_average: Float
+}
+
+type MovieList {
+  page: Int!
+  results: [MovieListItem!]!
+  total_results: Int!
+  total_pages: Int!
+}
+
+type Movie {
+  popular(page: Int, language: String, region: String): MovieList!
+  top_rated(page: Int, language: String, region: String): MovieList!
+  upcoming(page: Int, language: String, region: String): MovieList!
+}
+
+extend type Query {
+  movie: Movie!
+}

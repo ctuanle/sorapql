@@ -2,21 +2,25 @@
 
 package model
 
-type Link struct {
-	ID      string `json:"id"`
-	Title   string `json:"title"`
-	Address string `json:"address"`
-	User    *User  `json:"user"`
+type Introduction struct {
+	Name    string `json:"Name"`
+	Message string `json:"Message"`
 }
 
-type MoviePopular struct {
-	Page         int                 `json:"page"`
-	Results      []*MoviePopularItem `json:"results"`
-	TotalResults int                 `json:"total_results"`
-	TotalPages   int                 `json:"total_pages"`
+type Movie struct {
+	Popular  *MovieList `json:"popular"`
+	TopRated *MovieList `json:"top_rated"`
+	Upcoming *MovieList `json:"upcoming"`
 }
 
-type MoviePopularItem struct {
+type MovieList struct {
+	Page         int              `json:"page"`
+	Results      []*MovieListItem `json:"results"`
+	TotalResults int              `json:"total_results"`
+	TotalPages   int              `json:"total_pages"`
+}
+
+type MovieListItem struct {
 	PosterPath       *string  `json:"poster_path"`
 	Adult            *bool    `json:"adult"`
 	Overview         *string  `json:"overview"`
@@ -31,14 +35,4 @@ type MoviePopularItem struct {
 	VoteCount        *int     `json:"vote_count"`
 	Video            *bool    `json:"video"`
 	VoteAverage      *float64 `json:"vote_average"`
-}
-
-type NewLink struct {
-	Title   string `json:"title"`
-	Address string `json:"address"`
-}
-
-type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
 }
