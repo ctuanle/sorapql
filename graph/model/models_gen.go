@@ -188,3 +188,31 @@ type TVListItem struct {
 	Name             *string  `json:"name"`
 	OriginalName     *string  `json:"original_name"`
 }
+
+type Trending struct {
+	Page         int             `json:"page"`
+	Results      []*TrendingItem `json:"results"`
+	TotalPages   int             `json:"total_pages"`
+	TotalResults int             `json:"total_results"`
+}
+
+type TrendingItem struct {
+	PosterPath       *string  `json:"poster_path"`
+	Adult            *bool    `json:"adult"`
+	Overview         *string  `json:"overview"`
+	ReleaseDate      *string  `json:"release_date"`
+	GenreIds         []int    `json:"genre_ids"`
+	ID               int      `json:"id"`
+	OriginalTitle    *string  `json:"original_title"`
+	OriginalLanguage *string  `json:"original_language"`
+	Title            *string  `json:"title"`
+	BackdropPath     *string  `json:"backdrop_path"`
+	Popularity       *float64 `json:"popularity"`
+	VoteCount        *int     `json:"vote_count"`
+	Video            *bool    `json:"video"`
+	VoteAverage      *float64 `json:"vote_average"`
+	FirstAirDate     *string  `json:"first_air_date"`
+	OriginCountry    []string `json:"origin_country"`
+	Name             *string  `json:"name"`
+	OriginalName     *string  `json:"original_name"`
+}

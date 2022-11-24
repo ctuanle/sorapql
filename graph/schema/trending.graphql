@@ -1,0 +1,31 @@
+type TrendingItem {
+  poster_path: String
+  adult: Boolean
+  overview: String
+  release_date: String
+  genre_ids: [Int!]
+  id: Int!
+  original_title: String
+  original_language: String
+  title: String
+  backdrop_path: String
+  popularity: Float
+  vote_count: Int
+  video: Boolean
+  vote_average: Float
+  first_air_date: String
+  origin_country: [String!]
+  name: String
+  original_name: String
+}
+
+type Trending {
+  page: Int!
+  results: [TrendingItem!]!
+  total_pages: Int!
+  total_results: Int!
+}
+
+extend type Query {
+  trending(media_type: String!, time_window: String!, page: Int): Trending!
+}
