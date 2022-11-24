@@ -33,6 +33,28 @@ type Introduction struct {
 	Message string `json:"Message"`
 }
 
+type KnownForItem struct {
+	PosterPath       *string  `json:"poster_path"`
+	Adult            *bool    `json:"adult"`
+	Overview         *string  `json:"overview"`
+	ReleaseDate      *string  `json:"release_date"`
+	OriginalTitle    *string  `json:"original_title"`
+	GenreIds         []int    `json:"genre_ids"`
+	ID               int      `json:"id"`
+	MediaType        string   `json:"media_type"`
+	OriginalLanguage *string  `json:"original_language"`
+	Title            *string  `json:"title"`
+	BackdropPath     *string  `json:"backdrop_path"`
+	Popularity       *float64 `json:"popularity"`
+	VoteCount        *int     `json:"vote_count"`
+	Video            *bool    `json:"video"`
+	VoteAverage      *float64 `json:"vote_average"`
+	FirstAirDate     *string  `json:"first_air_date"`
+	OriginCountry    []string `json:"origin_country"`
+	Name             *string  `json:"name"`
+	OriginalName     *string  `json:"original_name"`
+}
+
 type Movie struct {
 	Detail   *MovieDetail `json:"detail"`
 	Popular  *MovieList   `json:"popular"`
@@ -96,6 +118,126 @@ type Network struct {
 	ID            int     `json:"id"`
 	LogoPath      *string `json:"logo_path"`
 	OriginCountry *string `json:"origin_country"`
+}
+
+type People struct {
+	Detail  *PersonDetail  `json:"detail"`
+	Popular *PopularPeople `json:"popular"`
+}
+
+type PersonCreditCast struct {
+	ID               int      `json:"id"`
+	OriginalLanguage *string  `json:"original_language"`
+	EpisodeCount     *int     `json:"episode_count"`
+	Overview         *string  `json:"overview"`
+	OriginCountry    []string `json:"origin_country"`
+	OriginalName     *string  `json:"original_name"`
+	GenreIds         []int    `json:"genre_ids"`
+	Name             *string  `json:"name"`
+	MediaType        *string  `json:"media_type"`
+	PosterPath       *string  `json:"poster_path"`
+	FirstAirDate     *string  `json:"first_air_date"`
+	VoteAverage      *float64 `json:"vote_average"`
+	VoteCount        *int     `json:"vote_count"`
+	Character        *string  `json:"character"`
+	BackdropPath     *string  `json:"backdrop_path"`
+	Popularity       *float64 `json:"popularity"`
+	CreditID         *string  `json:"credit_id"`
+	OriginalTitle    *string  `json:"original_title"`
+	Video            *bool    `json:"video"`
+	ReleaseDate      *string  `json:"release_date"`
+	Title            *string  `json:"title"`
+	Adult            *bool    `json:"adult"`
+}
+
+type PersonCreditCrew struct {
+	ID               int      `json:"id"`
+	Department       *string  `json:"department"`
+	OriginalLanguage *string  `json:"original_language"`
+	EpisodeCount     *int     `json:"episode_count"`
+	Job              *string  `json:"job"`
+	Overview         *string  `json:"overview"`
+	OriginCountry    []string `json:"origin_country"`
+	OriginalName     *string  `json:"original_name"`
+	VoteCount        *int     `json:"vote_count"`
+	Name             *string  `json:"name"`
+	MediaType        *string  `json:"media_type"`
+	Popularity       *float64 `json:"popularity"`
+	CreditID         *string  `json:"credit_id"`
+	BackdropPath     *string  `json:"backdrop_path"`
+	FirstAirDate     *string  `json:"first_air_date"`
+	VoteAverage      *float64 `json:"vote_average"`
+	GenreIds         []int    `json:"genre_ids"`
+	PosterPath       *string  `json:"poster_path"`
+	OriginalTitle    *string  `json:"original_title"`
+	Video            *bool    `json:"video"`
+	Title            *string  `json:"title"`
+	Adult            *bool    `json:"adult"`
+	ReleaseDate      *string  `json:"release_date"`
+}
+
+type PersonCredits struct {
+	Cast []*PersonCreditCast `json:"cast"`
+	Crew []*PersonCreditCrew `json:"crew"`
+}
+
+type PersonDetail struct {
+	Birthday           *string            `json:"birthday"`
+	KnownForDepartment *string            `json:"known_for_department"`
+	Deathday           *string            `json:"deathday"`
+	ID                 int                `json:"id"`
+	Name               *string            `json:"name"`
+	AlsoKnownAs        []string           `json:"also_known_as"`
+	Gender             *int               `json:"gender"`
+	Biography          *string            `json:"biography"`
+	Popularity         *float64           `json:"popularity"`
+	PlaceOfBirth       *string            `json:"place_of_birth"`
+	ProfilePath        *string            `json:"profile_path"`
+	Adult              *bool              `json:"adult"`
+	ImdbID             *string            `json:"imdb_id"`
+	Homepage           *string            `json:"homepage"`
+	ExternalIds        *PersonExternalIds `json:"external_ids"`
+	Images             *PersonImages      `json:"images"`
+	CombinedCredits    *PersonCredits     `json:"combined_credits"`
+}
+
+type PersonExternalIds struct {
+	ImdbID      *string `json:"imdb_id"`
+	FacebookID  *string `json:"facebook_id"`
+	FreebaseMid *string `json:"freebase_mid"`
+	FreebaseID  *string `json:"freebase_id"`
+	TvrageID    *string `json:"tvrage_id"`
+	TwitterID   *string `json:"twitter_id"`
+	InstagramID *string `json:"instagram_id"`
+}
+
+type PersonImageItem struct {
+	AspectRatio *float64 `json:"aspect_ratio"`
+	FilePath    *string  `json:"file_path"`
+	Height      *int     `json:"height"`
+	VoteAverage *float64 `json:"vote_average"`
+	VoteCount   *int     `json:"vote_count"`
+	Width       *int     `json:"width"`
+}
+
+type PersonImages struct {
+	Profiles []*PersonImageItem `json:"profiles"`
+}
+
+type PopularPeople struct {
+	Page         int              `json:"page"`
+	Results      []*PopularPerson `json:"results"`
+	TotalResults int              `json:"total_results"`
+	TotalPages   int              `json:"total_pages"`
+}
+
+type PopularPerson struct {
+	ProfilePath *string         `json:"profile_path"`
+	Adult       *bool           `json:"adult"`
+	ID          int             `json:"id"`
+	KnownFor    []*KnownForItem `json:"known_for"`
+	Name        *string         `json:"name"`
+	Popularity  *float64        `json:"popularity"`
 }
 
 type ProductionCompany struct {

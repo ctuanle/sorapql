@@ -81,3 +81,9 @@ models:
         resolver: true
       on_the_air:
         resolver: true
+  People:
+    fields:
+      detail:
+        resolver: true
+      popular:
+        resolver: true

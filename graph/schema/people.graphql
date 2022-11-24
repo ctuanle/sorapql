@@ -1,0 +1,145 @@
+type KnownForItem {
+  poster_path: String
+  adult: Boolean
+  overview: String
+  release_date: String
+  original_title: String
+  genre_ids: [Int!]
+  id: Int!
+  media_type: String!
+  original_language: String
+  title: String
+  backdrop_path: String
+  popularity: Float
+  vote_count: Int
+  video: Boolean
+  vote_average: Float
+  first_air_date: String
+  origin_country: [String!]
+  name: String
+  original_name: String
+}
+
+type PopularPerson {
+  profile_path: String
+  adult: Boolean
+  id: Int!
+  known_for: [KnownForItem!]
+  name: String
+  popularity: Float
+}
+
+type PopularPeople {
+  page: Int!
+  results: [PopularPerson!]!
+  total_results: Int!
+  total_pages: Int!
+}
+
+type PersonExternalIds {
+  imdb_id: String
+  facebook_id: String
+  freebase_mid: String
+  freebase_id: String
+  tvrage_id: String
+  twitter_id: String
+  instagram_id: String
+}
+
+type PersonImageItem {
+  aspect_ratio: Float
+  file_path: String
+  height: Int
+  vote_average: Float
+  vote_count: Int
+  width: Int
+}
+
+type PersonImages {
+  profiles: [PersonImageItem!]
+}
+
+type PersonCreditCast {
+  id: Int!
+  original_language: String
+  episode_count: Int
+  overview: String
+  origin_country: [String!]
+  original_name: String
+  genre_ids: [Int!]
+  name: String
+  media_type: String
+  poster_path: String
+  first_air_date: String
+  vote_average: Float
+  vote_count: Int
+  character: String
+  backdrop_path: String
+  popularity: Float
+  credit_id: String
+  original_title: String
+  video: Boolean
+  release_date: String
+  title: String
+  adult: Boolean
+}
+
+type PersonCreditCrew {
+  id: Int!
+  department: String
+  original_language: String
+  episode_count: Int
+  job: String
+  overview: String
+  origin_country: [String!]
+  original_name: String
+  vote_count: Int
+  name: String
+  media_type: String
+  popularity: Float
+  credit_id: String
+  backdrop_path: String
+  first_air_date: String
+  vote_average: Float
+  genre_ids: [Int!]
+  poster_path: String
+  original_title: String
+  video: Boolean
+  title: String
+  adult: Boolean
+  release_date: String
+}
+
+type PersonCredits {
+  cast: [PersonCreditCast!]
+  crew: [PersonCreditCrew!]
+}
+
+type PersonDetail {
+  birthday: String
+  known_for_department: String
+  deathday: String
+  id: Int!
+  name: String
+  also_known_as: [String!]
+  gender: Int
+  biography: String
+  popularity: Float
+  place_of_birth: String
+  profile_path: String
+  adult: Boolean
+  imdb_id: String
+  homepage: String
+  external_ids: PersonExternalIds
+  images: PersonImages
+  combined_credits: PersonCredits
+}
+
+type People {
+  detail(id: Int!, language: String): PersonDetail!
+  popular(language: String, page: Int): PopularPeople!
+}
+
+extend type Query {
+  people: People!
+}
