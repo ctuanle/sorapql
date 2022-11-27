@@ -22,6 +22,14 @@ type MovieList {
   total_pages: Int!
 }
 
+type MovieExternalIds {
+  imdb_id: String
+  facebook_id: String
+  twitter_id: String
+  instagram_id: String
+  wikidata_id: String
+}
+
 type MovieDetail {
   adult: Boolean
   backdrop_path: String
@@ -52,6 +60,8 @@ type MovieDetail {
   images: MediaImages!
   recommendations(page: Int): MovieList!
   similar(page: Int): MovieList!
+  imdb_rating: IMDBRating
+  external_ids: MovieExternalIds
 }
 
 type Movie {

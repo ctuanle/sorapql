@@ -61,7 +61,7 @@ func MovieDetail(id int, fields []string, language *string) (*model.MovieDetail,
 	}
 
 	// TODO: if fields contains only one of these, should call specific endpoint
-	var hasCredit, hasVideo, hasImage, hasRecommendation, hasSimilar bool
+	var hasCredit, hasVideo, hasImage, hasRecommendation, hasSimilar, hasImdb, hasEx bool
 	for _, field := range fields {
 		if field == "credits" {
 			hasCredit = true
@@ -73,6 +73,10 @@ func MovieDetail(id int, fields []string, language *string) (*model.MovieDetail,
 			hasRecommendation = true
 		} else if field == "similar" {
 			hasSimilar = true
+		} else if field == "external_ids" {
+			hasEx = true
+		}else if field == "imdb_rating" {
+			hasImdb = true
 		}
 	}
 
@@ -91,7 +95,10 @@ func MovieDetail(id int, fields []string, language *string) (*model.MovieDetail,
 			query += "similar,"
 		}
 		if hasVideo {
-			query += "videos"
+			query += "videos,"
+		}
+		if hasEx {
+			query += "external_ids"
 		}
 	}
 
@@ -99,6 +106,13 @@ func MovieDetail(id int, fields []string, language *string) (*model.MovieDetail,
 	if err != nil {
 		return nil, errors.New("Something went wrong!")
 	}
+
+	if (hasImdb) {
+		// TODO: this increase response time by 2s, a lot 
+		rating, _ := imdb_rate(*data.ImdbID)
+		data.ImdbRating = rating
+	}
+	
 
 	return data, nil
 }

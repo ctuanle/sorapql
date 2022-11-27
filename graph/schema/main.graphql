@@ -95,6 +95,12 @@ type MediaCredit {
   cast: [CreditCastItem!]
   crew: [CreditCrewItem!]
 }
+
+type IMDBRating {
+  count: Int
+  star: Float
+}
+
 type Query {
   introduction: Introduction!
 }

@@ -57,6 +57,11 @@ type Genre struct {
 	Name *string `json:"name"`
 }
 
+type IMDBRating struct {
+	Count *int     `json:"count"`
+	Star  *float64 `json:"star"`
+}
+
 type ImageItem struct {
 	AspectRatio *float64 `json:"aspect_ratio"`
 	FilePath    *string  `json:"file_path"`
@@ -145,6 +150,16 @@ type MovieDetail struct {
 	Images              *MediaImages         `json:"images"`
 	Recommendations     *MovieList           `json:"recommendations"`
 	Similar             *MovieList           `json:"similar"`
+	ImdbRating          *IMDBRating          `json:"imdb_rating"`
+	ExternalIds         *MovieExternalIds    `json:"external_ids"`
+}
+
+type MovieExternalIds struct {
+	ImdbID      *string `json:"imdb_id"`
+	FacebookID  *string `json:"facebook_id"`
+	TwitterID   *string `json:"twitter_id"`
+	InstagramID *string `json:"instagram_id"`
+	WikidataID  *string `json:"wikidata_id"`
 }
 
 type MovieList struct {
@@ -360,6 +375,19 @@ type TVDetail struct {
 	Images              *MediaImages         `json:"images"`
 	Recommendations     *TVList              `json:"recommendations"`
 	Similar             *TVList              `json:"similar"`
+	ImdbRating          *IMDBRating          `json:"imdb_rating"`
+	ExternalIds         *TVExternalIds       `json:"external_ids"`
+}
+
+type TVExternalIds struct {
+	ImdbID      *string `json:"imdb_id"`
+	FreebaseMid *string `json:"freebase_mid"`
+	FreebaseID  *string `json:"freebase_id"`
+	TvdbID      *int    `json:"tvdb_id"`
+	TvrageID    *int    `json:"tvrage_id"`
+	FacebookID  *string `json:"facebook_id"`
+	InstagramID *string `json:"instagram_id"`
+	TwitterID   *string `json:"twitter_id"`
 }
 
 type TVList struct {

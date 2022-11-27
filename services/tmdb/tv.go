@@ -57,7 +57,7 @@ func TVDetail(id int, fields []string, language *string) (*model.TVDetail, error
 		query += "language=" + *language + "&"
 	}
 	// TODO: if fields contains only one of these, should call specific endpoint
-	var hasCredit, hasVideo, hasImage, hasRecommendation, hasSimilar bool
+	var hasCredit, hasVideo, hasImage, hasRecommendation, hasSimilar, hasEx, hasImdb bool
 	for _, field := range fields {
 		if field == "credits" {
 			hasCredit = true
@@ -69,6 +69,10 @@ func TVDetail(id int, fields []string, language *string) (*model.TVDetail, error
 			hasRecommendation = true
 		} else if field == "similar" {
 			hasSimilar = true
+		} else if field == "external_ids" {
+			hasEx = true
+		} else if field == "imdb_rating" {
+			hasImdb = true
 		}
 	}
 
@@ -87,13 +91,33 @@ func TVDetail(id int, fields []string, language *string) (*model.TVDetail, error
 			query += "similar,"
 		}
 		if hasVideo {
-			query += "videos"
+			query += "videos,"
+		}
+		if hasEx {
+			query += "external_ids"
 		}
 	}
 
 	data, err := fetcher[*model.TVDetail](fmt.Sprintf("/tv/%v", id), query)
 	if err != nil {
 		return nil, errors.New("Something went wrong!")
+	}
+
+	if hasImdb {
+		var imdb_id string
+		if data.ExternalIds != nil && len(*data.ExternalIds.ImdbID) != 0 {
+			imdb_id = *data.ExternalIds.ImdbID
+		} else {
+			res, _ := fetcher[*model.MovieExternalIds](fmt.Sprintf("/tv/%v/external_ids", id), "")
+			if res.ImdbID != nil && len(*res.ImdbID) != 0 {
+				imdb_id = *res.ImdbID
+			}
+		}
+
+		if len(imdb_id) != 0 {
+			rating, _ := imdb_rate(imdb_id)
+			data.ImdbRating = rating
+		}
 	}
 
 	return data, nil

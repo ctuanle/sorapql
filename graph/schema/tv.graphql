@@ -59,6 +59,17 @@ type Season {
   season_number: Int
 }
 
+type TVExternalIds {
+  imdb_id: String
+  freebase_mid: String
+  freebase_id: String
+  tvdb_id: Int
+  tvrage_id: Int
+  facebook_id: String
+  instagram_id: String
+  twitter_id: String
+}
+
 type TVDetail {
   backdrop_path: String
   created_by: [CreatedBy!]
@@ -95,6 +106,8 @@ type TVDetail {
   images: MediaImages!
   recommendations(page: Int): TVList!
   similar(page: Int): TVList!
+  imdb_rating: IMDBRating
+  external_ids: TVExternalIds
 }
 
 type TV {
