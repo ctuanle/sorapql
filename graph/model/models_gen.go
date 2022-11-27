@@ -10,6 +10,35 @@ type CreatedBy struct {
 	ProfilePath *string `json:"profile_path"`
 }
 
+type CreditCastItem struct {
+	Adult              *bool    `json:"adult"`
+	Gender             *int     `json:"gender"`
+	ID                 int      `json:"id"`
+	KnownForDepartment *string  `json:"known_for_department"`
+	Name               *string  `json:"name"`
+	OriginalName       *string  `json:"original_name"`
+	Popularity         *float64 `json:"popularity"`
+	ProfilePath        *string  `json:"profile_path"`
+	CastID             *int     `json:"cast_id"`
+	Character          *string  `json:"character"`
+	CreditID           *string  `json:"credit_id"`
+	Order              *int     `json:"order"`
+}
+
+type CreditCrewItem struct {
+	Adult              *bool    `json:"adult"`
+	Gender             *int     `json:"gender"`
+	ID                 int      `json:"id"`
+	KnownForDepartment *string  `json:"known_for_department"`
+	Name               *string  `json:"name"`
+	OriginalName       *string  `json:"original_name"`
+	Popularity         *float64 `json:"popularity"`
+	ProfilePath        *string  `json:"profile_path"`
+	CreditID           *string  `json:"credit_id"`
+	Department         *string  `json:"department"`
+	Job                *string  `json:"job"`
+}
+
 type Episode struct {
 	AirDate        *string  `json:"air_date"`
 	EpisodeNumber  *int     `json:"episode_number"`
@@ -26,6 +55,16 @@ type Episode struct {
 type Genre struct {
 	ID   *int    `json:"id"`
 	Name *string `json:"name"`
+}
+
+type ImageItem struct {
+	AspectRatio *float64 `json:"aspect_ratio"`
+	FilePath    *string  `json:"file_path"`
+	Height      *int     `json:"height"`
+	Iso639_1    *string  `json:"iso_639_1"`
+	VoteAverage *float64 `json:"vote_average"`
+	VoteCount   *int     `json:"vote_count"`
+	Width       *int     `json:"width"`
 }
 
 type Introduction struct {
@@ -53,6 +92,20 @@ type KnownForItem struct {
 	OriginCountry    []string `json:"origin_country"`
 	Name             *string  `json:"name"`
 	OriginalName     *string  `json:"original_name"`
+}
+
+type MediaCredit struct {
+	Cast []*CreditCastItem `json:"cast"`
+	Crew []*CreditCrewItem `json:"crew"`
+}
+
+type MediaImages struct {
+	Backdrops []*ImageItem `json:"backdrops"`
+	Posters   []*ImageItem `json:"posters"`
+}
+
+type MediaVideos struct {
+	Results []*VideoItem `json:"results"`
 }
 
 type Movie struct {
@@ -87,6 +140,11 @@ type MovieDetail struct {
 	Video               *bool                `json:"video"`
 	VoteAverage         *float64             `json:"vote_average"`
 	VoteCount           *int                 `json:"vote_count"`
+	Credits             *MediaCredit         `json:"credits"`
+	Videos              *MediaVideos         `json:"videos"`
+	Images              *MediaImages         `json:"images"`
+	Recommendations     *MovieList           `json:"recommendations"`
+	Similar             *MovieList           `json:"similar"`
 }
 
 type MovieList struct {
@@ -211,17 +269,8 @@ type PersonExternalIds struct {
 	InstagramID *string `json:"instagram_id"`
 }
 
-type PersonImageItem struct {
-	AspectRatio *float64 `json:"aspect_ratio"`
-	FilePath    *string  `json:"file_path"`
-	Height      *int     `json:"height"`
-	VoteAverage *float64 `json:"vote_average"`
-	VoteCount   *int     `json:"vote_count"`
-	Width       *int     `json:"width"`
-}
-
 type PersonImages struct {
-	Profiles []*PersonImageItem `json:"profiles"`
+	Profiles []*ImageItem `json:"profiles"`
 }
 
 type PopularPeople struct {
@@ -357,4 +406,17 @@ type TrendingItem struct {
 	OriginCountry    []string `json:"origin_country"`
 	Name             *string  `json:"name"`
 	OriginalName     *string  `json:"original_name"`
+}
+
+type VideoItem struct {
+	Iso639_1    *string `json:"iso_639_1"`
+	Iso3166_1   *string `json:"iso_3166_1"`
+	Name        *string `json:"name"`
+	Key         *string `json:"key"`
+	Site        *string `json:"site"`
+	Size        *int    `json:"size"`
+	Type        *string `json:"type"`
+	Official    *bool   `json:"official"`
+	PublishedAt *string `json:"published_at"`
+	ID          *string `json:"id"`
 }

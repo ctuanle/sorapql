@@ -47,6 +47,11 @@ type MovieDetail {
   video: Boolean
   vote_average: Float
   vote_count: Int
+  credits: MediaCredit!
+  videos: MediaVideos!
+  images: MediaImages!
+  recommendations(page: Int): MovieList!
+  similar(page: Int): MovieList!
 }
 
 type Movie {

@@ -46,17 +46,8 @@ type PersonExternalIds {
   instagram_id: String
 }
 
-type PersonImageItem {
-  aspect_ratio: Float
-  file_path: String
-  height: Int
-  vote_average: Float
-  vote_count: Int
-  width: Int
-}
-
 type PersonImages {
-  profiles: [PersonImageItem!]
+  profiles: [ImageItem!]
 }
 
 type PersonCreditCast {

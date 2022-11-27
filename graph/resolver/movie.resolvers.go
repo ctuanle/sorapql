@@ -6,6 +6,7 @@ package resolver
 import (
 	"context"
 
+	"github.com/99designs/gqlgen/graphql"
 	"github.com/ctuanle/sorapql/graph/generated"
 	"github.com/ctuanle/sorapql/graph/model"
 	"github.com/ctuanle/sorapql/services/tmdb"
@@ -13,7 +14,8 @@ import (
 
 // Detail is the resolver for the detail field.
 func (r *movieResolver) Detail(ctx context.Context, obj *model.Movie, id int, language *string) (*model.MovieDetail, error) {
-	return tmdb.MovieDetail(id, language)
+	fields := graphql.CollectAllFields(ctx)
+	return tmdb.MovieDetail(id, fields, language)
 }
 
 // Popular is the resolver for the popular field.

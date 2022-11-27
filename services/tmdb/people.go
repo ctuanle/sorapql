@@ -28,7 +28,7 @@ func PeoplePopular(language *string, page *int) (*model.PopularPeople, error) {
 func PersonDetail(id int, fields []string, language *string) (*model.PersonDetail, error) {
 	query := ""
 	if language != nil && len(*language) != 0 {
-		query = fmt.Sprintf("language=%v&", *language)
+		query = "language=" + *language
 	}
 	var hasImage, hasExternalId, hasCredit bool
 	for _, v := range fields {
@@ -42,7 +42,7 @@ func PersonDetail(id int, fields []string, language *string) (*model.PersonDetai
 	}
 
 	if hasImage || hasCredit || hasExternalId {
-		query = fmt.Sprintf("%vappend_to_response=", query)
+		query += "&append_to_response="
 		if hasImage {
 			query += "images,"
 		}

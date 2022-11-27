@@ -30,6 +30,71 @@ type Genre {
   name: String
 }
 
+type ImageItem {
+  aspect_ratio: Float
+  file_path: String
+  height: Int
+  iso_639_1: String
+  vote_average: Float
+  vote_count: Int
+  width: Int
+}
+
+type MediaImages {
+  backdrops: [ImageItem!]
+  posters: [ImageItem!]
+}
+
+type VideoItem {
+  iso_639_1: String
+  iso_3166_1: String
+  name: String
+  key: String
+  site: String
+  size: Int
+  type: String
+  official: Boolean
+  published_at: String
+  id: String
+}
+
+type MediaVideos {
+  results: [VideoItem!]
+}
+
+type CreditCastItem {
+  adult: Boolean
+  gender: Int
+  id: Int!
+  known_for_department: String
+  name: String
+  original_name: String
+  popularity: Float
+  profile_path: String
+  cast_id: Int
+  character: String
+  credit_id: String
+  order: Int
+}
+
+type CreditCrewItem {
+  adult: Boolean
+  gender: Int
+  id: Int!
+  known_for_department: String
+  name: String
+  original_name: String
+  popularity: Float
+  profile_path: String
+  credit_id: String
+  department: String
+  job: String
+}
+
+type MediaCredit {
+  cast: [CreditCastItem!]
+  crew: [CreditCrewItem!]
+}
 type Query {
   introduction: Introduction!
 }
