@@ -6,7 +6,7 @@ type CreatedBy struct {
 	ID          *int    `json:"id"`
 	CreditID    *string `json:"credit_id"`
 	Name        *string `json:"name"`
-	Gender      *string `json:"gender"`
+	Gender      *int    `json:"gender"`
 	ProfilePath *string `json:"profile_path"`
 }
 
@@ -355,6 +355,11 @@ type TVDetail struct {
 	Type                *string              `json:"type"`
 	VoteAverage         *float64             `json:"vote_average"`
 	VoteCount           *int                 `json:"vote_count"`
+	Credits             *MediaCredit         `json:"credits"`
+	Videos              *MediaVideos         `json:"videos"`
+	Images              *MediaImages         `json:"images"`
+	Recommendations     *TVList              `json:"recommendations"`
+	Similar             *TVList              `json:"similar"`
 }
 
 type TVList struct {

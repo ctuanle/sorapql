@@ -57,7 +57,7 @@ func MovieUpcoming(page *int, language *string, region *string) (*model.MovieLis
 func MovieDetail(id int, fields []string, language *string) (*model.MovieDetail, error) {
 	query := ""
 	if language != nil && len(*language) != 0 {
-		query = "language=" + *language
+		query = "language=" + *language + "&"
 	}
 
 	// TODO: if fields contains only one of these, should call specific endpoint
@@ -77,7 +77,7 @@ func MovieDetail(id int, fields []string, language *string) (*model.MovieDetail,
 	}
 
 	if hasCredit || hasImage || hasRecommendation || hasSimilar || hasVideo {
-		query += "&append_to_response="
+		query += "append_to_response="
 		if hasCredit {
 			query += "credits,"
 		}

@@ -25,7 +25,7 @@ type CreatedBy {
   id: Int
   credit_id: String
   name: String
-  gender: String
+  gender: Int
   profile_path: String
 }
 
@@ -90,6 +90,11 @@ type TVDetail {
   type: String
   vote_average: Float
   vote_count: Int
+  credits: MediaCredit!
+  videos: MediaVideos!
+  images: MediaImages!
+  recommendations(page: Int): TVList!
+  similar(page: Int): TVList!
 }
 
 type TV {

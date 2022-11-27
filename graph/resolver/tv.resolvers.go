@@ -6,6 +6,7 @@ package resolver
 import (
 	"context"
 
+	"github.com/99designs/gqlgen/graphql"
 	"github.com/ctuanle/sorapql/graph/generated"
 	"github.com/ctuanle/sorapql/graph/model"
 	"github.com/ctuanle/sorapql/services/tmdb"
@@ -18,7 +19,8 @@ func (r *queryResolver) Tv(ctx context.Context) (*model.Tv, error) {
 
 // Detail is the resolver for the detail field.
 func (r *tVResolver) Detail(ctx context.Context, obj *model.Tv, id int, language *string) (*model.TVDetail, error) {
-	return tmdb.TVDetail(id, language)
+	fields := graphql.CollectAllFields(ctx)
+	return tmdb.TVDetail(id, fields, language)
 }
 
 // Popular is the resolver for the popular field.
