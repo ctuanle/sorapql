@@ -11,17 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install go1.19
-        run: |
-          export GOPATH=~/local/lib/go
-          go install golang.org/dl/go1.19@latest
-          ~/local/lib/go/bin/go1.19 download
-
-      - name: Generate gqlgen exec file
-        run: |
-          ~/local/lib/go/bin/go1.19 mod tidy
-          ~/local/lib/go/bin/go1.19 run github.com/99designs/gqlgen generate
-
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
