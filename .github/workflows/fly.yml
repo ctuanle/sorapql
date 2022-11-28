@@ -12,10 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install go1.19
+        run: |
+          go install golang.org/dl/go1.19@latest
+          go1.19 download
+
       - name: Generate gqlgen exec file
         run: |
-          go get github.com/99designs/gqlgen
-          go run github.com/99designs/gqlgen generate
+          go1.19 mod tidy
+          go1.19 run github.com/99designs/gqlgen generate
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
