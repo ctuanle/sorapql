@@ -14,13 +14,14 @@ jobs:
 
       - name: Install go1.19
         run: |
+          export GOPATH=~/local/lib/go
           go install golang.org/dl/go1.19@latest
-          $GOPATH/bin/go1.19 download
+          ~/local/lib/go/bin/go1.19 download
 
       - name: Generate gqlgen exec file
         run: |
-          $GOPATH/bin/go1.19 mod tidy
-          $GOPATH/bin/go1.19 run github.com/99designs/gqlgen generate
+          ~/local/lib/go/bin/go1.19 mod tidy
+          ~/local/lib/go/bin/go1.19 run github.com/99designs/gqlgen generate
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only
